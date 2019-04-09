@@ -62,20 +62,12 @@ class HelloWorld1 extends Component {
       showHelloWorld: false
     };
 
-    console.log('dafuq')
-  }
-
-  updateState() {
-    this.setState(
-      { showHelloWorld: !this.state.showHelloWorld }
-    )
-  }
-
-  componentDidMount() {
-    console.log('this.state.showHelloWorld')
     setInterval( () => {
-        this.updateState()
+      this.setState( previousState => (
+        { showHelloWorld: !previousState.showHelloWorld }
+      ))
 
+      console.log('state: ' + this.state.showHelloWorld)
     }, 1000);
   }
 
@@ -86,18 +78,26 @@ class HelloWorld1 extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.normalText} isHidden={this.state.showHelloWorld}>
-          HelloWorld
-        </Text>
+          <Text style={styles.normalText}>
+            {this.state.showHelloWorld ?
+                'HelloWorld'
+              : null
+            }
+          </Text>
+
             <TouchableOpacity
                 onPress={() => {
                 }}
                 activeOpacity={75 / 100}
                 underlayColor={"rgb(210,210,210)"}>
               <View style={styles.container}>
-                <Text style={styles.normalText}>
-                  Heheee
-                </Text>
+
+          {this.state.showHelloWorld &&
+            <Text style={styles.normalText}>
+                Heheee
+            </Text>
+            // https://reactjs.org/docs/conditional-rendering.html
+          }
                 <Image
                   style={{
                     width: 300,
