@@ -47,11 +47,11 @@
 
 6. Journal: Using [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) to make stuff.
 
- Getting bored so...
+7.  Getting bored so...
+	- [Cosmology by Steven Weinberg](https://google.com/search?q=Cosmology+by+Steven+Weinberg)
+	- Mathematics, Quantum physics, Special relativity, general relativity...
 
-7. [Cosmology by Steven Weinberg](https://google.com/search?q=Cosmology+by+Steven+Weinberg)
-
-8. Setup new project:
+8. Reading about setup new project:
 	- [Config](https://medium.com/@kelleyannerose/configuring-a-new-react-native-app-171467cd0ed8)
 	- [Structure](https://medium.freecodecamp.org/how-to-structure-your-project-and-manage-static-resources-in-react-native-6f4cfc947d92)
-
+	- Making [shell script](Scripts/react-native-init-dirs.sh) to generate prj
