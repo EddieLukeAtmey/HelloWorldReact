@@ -1,6 +1,8 @@
 'use strict';
 
-import React, { Component } from 'react';
+import BaseComponent from 'Base/BaseComponent'
+import { DefaultStyle as style } from 'Style/DefaultStyle'
+import React from 'react'
 import {
   AppRegistry,
   Image,
@@ -12,7 +14,8 @@ import {
   View,
 } from 'react-native'
 
-class HelloWorldVC extends Component {
+export default class HelloWorldVC extends BaseComponent {
+
   render() {
 
     return (
@@ -26,35 +29,11 @@ class HelloWorldVC extends Component {
 //         }}>
 //         <Clone depth='0'/>
 //       </View>
-    );
+);
   }
 }
 
-class Clone extends Component {
-  render() {
-
-    if (this.props.depth > 5) return (
-      <Text
-        style={styles.normalText}>
-        The end
-      </Text>
-    );
-
-    return (
-      <View style= {{
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#000000',
-        borderStyle: 'solid',
-      }}>
-        <Clone depth={ this.props.depth + 1}/>
-      </View>
-    );
-  }
-}
-
-class HelloWorld1 extends Component {
+class HelloWorld1 extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -72,59 +51,25 @@ class HelloWorld1 extends Component {
   }
 
   render() {
-    let pic = {
-      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-    };
+    let pic = { uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg' };
 
     return (
-      <View style={styles.container}>
-          <Text style={styles.normalText}>
-            {this.state.showHelloWorld ?
-                'HelloWorld'
-              : null
+      <View style={style.stackView.vCenter10}>
+        <Text style={style.text.normal18}>
+          { this.state.showHelloWorld ? 'HelloWorld' : null }
+        </Text>
+
+        <TouchableOpacity onPress={() => { }} activeOpacity={75 / 100} underlayColor={"rgb(210,210,210)"}>
+
+          <View style={style.stackView.vCenter10}>
+
+            {this.state.showHelloWorld &&
+              <Text style={[style.text.normal14, {color: 'red'}]}> Heheee </Text> // https://reactjs.org/docs/conditional-rendering.html
             }
-          </Text>
-
-            <TouchableOpacity
-                onPress={() => {
-                }}
-                activeOpacity={75 / 100}
-                underlayColor={"rgb(210,210,210)"}>
-              <View style={styles.container}>
-
-          {this.state.showHelloWorld &&
-            <Text style={styles.normalText}>
-                Heheee
-            </Text>
-            // https://reactjs.org/docs/conditional-rendering.html
-          }
-                <Image
-                  style={{
-                    width: 300,
-                    height: 200,
-                  }}
-                  resizeMode={"contain"}
-                  source={pic}
-                />
-              </View>
-            </TouchableOpacity>
+            <Image style={{ width: 300, height: 200 }} resizeMode={"contain"} source={pic}/>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: "center",
-        padding: 10
-	},
-
-	normalText: {
-		fontSize: 14,
-	}
-});
-
-export default HelloWorldVC;
