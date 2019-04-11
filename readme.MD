@@ -36,7 +36,7 @@
 
 5. [Styles](https://facebook.github.io/react-native/docs/style), [Width height](https://facebook.github.io/react-native/docs/height-and-width).
 
-#### Day 2
+#### Day2
 6. Try modulus the project:
 	- Understand [import and export](https://facebook.github.io/create-react-app/docs/importing-a-component)
 	- https://github.com/zetachang/react-native-dotenv/issues/39
@@ -55,3 +55,30 @@
 	- [Config](https://medium.com/@kelleyannerose/configuring-a-new-react-native-app-171467cd0ed8)
 	- [Structure](https://medium.freecodecamp.org/how-to-structure-your-project-and-manage-static-resources-in-react-native-6f4cfc947d92)
 	- Making [shell script](Scripts/react-native-init-dirs.sh) to generate prj
+
+#### Day3
+1. Understand how react compile to iOS (obviously 'cause I'm iOS dev)
+	- `npm i` is similar to `pod install`
+	- [no simulator](https://github.com/facebook/react-native/issues/23282)
+
+	  ```
+	  	$open node_modules/react-native/local-cli/runIOS/findMatchingSimulator.js
+	  	$replace(version.startsWith, version.includes)
+	  ```
+
+	- `LD`: Linker App
+	- clean build: `rm -r ios/build`
+
+2. [expo](https://docs.expo.io/versions/latest/): `$npm i -g expo-cli`
+	- `expo start`
+	- `open .xcworkspace` => run with xcode
+	- if missing `shell-app` in script phase -> `touch $missingFiles`
+	- read log in **expo cli**
+
+3. Explore some packages:
+	- [Router-Flux](https://github.com/aksonov/react-native-router-flux)
+	- [React-Redux](https://react-redux.js.org/)
+
+######_Keep reading the documents_
+
+<!-- #### Day 4 -->
