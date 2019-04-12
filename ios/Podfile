@@ -1,0 +1,78 @@
+platform :ios, '12.0'
+
+def helloReactPods
+
+  rn_path = '../node_modules/react-native'
+  rn_maps_path = '../node_modules/react-native-maps'
+
+  pod 'React', :path => rn_path, :subspecs => [
+    'Core',
+    'CxxBridge', # Include this for RN >= 0.47
+    'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
+    'RCTAnimation', # Needed for FlatList and animations running on native UI thread
+    'RCTNetwork',
+    'RCTText',
+    'RCTWebSocket', # Needed for debugging
+    # Add any other subspecs you want to use in your project
+  ]
+
+  # from gmap pods
+  pod 'React', :path => rn_path, :subspecs => [
+    'RCTActionSheet',
+    'RCTImage',
+    'RCTLinkingIOS',
+    'RCTSettings',
+    'RCTVibration',
+  ]
+
+  # Explicitly include Yoga if you are using RN >= 0.42.0
+  pod 'yoga', :path => "#{rn_path}/ReactCommon/yoga"
+  # Third party deps podspec link
+  pod 'DoubleConversion', :podspec => "#{rn_path}/third-party-podspecs/DoubleConversion.podspec"
+  pod 'glog', :podspec => "#{rn_path}/third-party-podspecs/glog.podspec"
+  pod 'Folly', :podspec => "#{rn_path}/third-party-podspecs/Folly.podspec"
+
+  # from gmap
+  pod 'react-native-maps', path: rn_maps_path
+  pod 'react-native-google-maps', path: rn_maps_path
+  pod 'GoogleMaps'
+  pod 'Google-Maps-iOS-Utils'
+
+end
+
+target 'HelloWorldReact' do
+
+  # Pods for HelloWorldReact
+  helloReactPods
+
+  target 'HelloWorldReactTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+end
+
+target 'HelloWorldReact-tvOS' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for HelloWorldReact-tvOS
+
+  target 'HelloWorldReact-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name == 'react-native-google-maps'
+      target.build_configurations.each do |config|
+        config.build_settings['CLANG_ENABLE_MODULES'] = 'No'
+      end
+    end
+    if target.name == "React"
+      target.remove_from_project
+    end
+  end
+end
+
